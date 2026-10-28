@@ -38,3 +38,56 @@ console.log(renameWorkout(workout, "MyWorkout"));
 
 const getFirstSet = ({ sets: [firstSet] }) => firstSet;
 console.log(getFirstSet(workout));
+
+const getWorkoutVolume = (workout) =>
+  workout.sets.reduce((total, set) => total + getSetVolume(set), 0);
+console.log(getWorkoutVolume(workout));
+
+const getTotalReps = (workout) =>
+  workout.sets.reduce((total, set) => total + set.reps, 0);
+console.log(getTotalReps(workout));
+
+const getSetsByExercise = (workout, exercise) =>
+  workout.sets.filter((set) => set.exercise === exercise);
+console.log(getSetsByExercise(workout, "Bench press"));
+
+const formatWorkout = (workout) =>
+  workout.sets.map((set) => formatSet(set)).join("\n");
+console.log(formatWorkout(workout));
+
+const getBestSet = (workout) =>
+  workout.sets.toSorted(
+    (set1, set2) => estimateOneRepMax(set2) - estimateOneRepMax(set1),
+  )[0];
+console.log(getBestSet(workout));
+
+const getBestSetReduce = (workout) =>
+  workout.sets.reduce(
+    (best, set) =>
+      estimateOneRepMax(best) > estimateOneRepMax(set) ? best : set,
+    workout.sets[0],
+  );
+console.log(getBestSetReduce(workout));
+
+const hasExercise = (workout, exercise) =>
+  workout.sets.some((set) => set.exercise === exercise);
+console.log(hasExercise(workout, "Bench press"));
+
+const groupSetsByExercise = (workout) =>
+  workout.sets.reduce(
+    (sets, set) => ({
+      ...sets,
+      [set.exercise]: [...(sets[set.exercise] ?? []), set],
+    }),
+    {},
+  );
+
+const getVolumeByExercise = (workout) =>
+  workout.sets.reduce(
+    (groups, set) => ({
+      ...groups,
+      [set.exercise]: (groups[set.exercise] ?? 0) + getSetVolume(set),
+    }),
+    {},
+  );
+console.log(getVolumeByExercise(workout));
