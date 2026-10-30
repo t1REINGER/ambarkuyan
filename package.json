@@ -1,0 +1,21 @@
+{
+  "name": "ambarkuyan",
+  "version": "1.0.0",
+  "description": "A mobile-first workout diary for logging gym sessions, tracking personal records and seeing your progress over time.",
+  "main": "index.js",
+  "scripts": {
+    "demo": "node core/demo.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t1REINGER/ambarkuyan.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/t1REINGER/ambarkuyan/issues"
+  },
+  "homepage": "https://github.com/t1REINGER/ambarkuyan#readme"
+}
