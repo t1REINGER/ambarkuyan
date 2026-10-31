@@ -90,3 +90,8 @@ export const getLatestWorkout = (workouts) =>
   workouts.toSorted((workout1, workout2) =>
     workout2.date.localeCompare(workout1.date),
   )[0];
+
+export const formatPersonalRecords = (records) =>
+  Object.entries(records)
+    .map(([exercise, oneRepMax]) => `${exercise}: ${oneRepMax} kg`)
+    .join("\n");

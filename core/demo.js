@@ -2,6 +2,7 @@ import { workouts } from "./sample-data.js";
 import {
   addSet,
   estimateOneRepMax,
+  formatPersonalRecords,
   formatSet,
   formatWorkout,
   getBestSetReduce,
@@ -51,7 +52,6 @@ console.log("--- All workouts ---");
 console.log(getPersonalRecords(workouts));
 console.log(getPersonalRecords([]));
 console.log(getLatestWorkout(workouts));
-// { id: 3, title: 'Push day', date: '2026-10-30', sets: [...] }
-
 console.log(getLatestWorkout(workouts)?.title ?? "No workouts"); // "Push day"
 console.log(getLatestWorkout([])?.title ?? "No workouts"); // "No workouts"
+console.log(formatPersonalRecords(getPersonalRecords(workouts)));
