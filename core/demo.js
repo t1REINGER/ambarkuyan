@@ -6,7 +6,10 @@ import {
   formatWorkout,
   getBestSetReduce,
   getBestSetSorted,
+  getExerciseSummary,
   getFirstSet,
+  getLatestWorkout,
+  getPersonalRecords,
   getSetVolume,
   getSetsByExercise,
   getTotalReps,
@@ -41,3 +44,14 @@ console.log(getBestSetReduce(workout));
 console.log(hasExercise(workout, "Pull-ups"));
 console.log(groupSetsByExercise(workout));
 console.log(getVolumeByExercise(workout));
+
+console.log(getExerciseSummary(workout));
+
+console.log("--- All workouts ---");
+console.log(getPersonalRecords(workouts));
+console.log(getPersonalRecords([]));
+console.log(getLatestWorkout(workouts));
+// { id: 3, title: 'Push day', date: '2026-10-30', sets: [...] }
+
+console.log(getLatestWorkout(workouts)?.title ?? "No workouts"); // "Push day"
+console.log(getLatestWorkout([])?.title ?? "No workouts"); // "No workouts"

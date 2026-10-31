@@ -64,3 +64,29 @@ export const getVolumeByExercise = (workout) =>
     }),
     {},
   );
+
+export const getExerciseSummary = (workout) =>
+  Object.entries(groupSetsByExercise(workout)).map(([exercise, sets]) => ({
+    exercise,
+    sets: sets.length,
+    volume: getWorkoutVolume({ sets }),
+  }));
+
+export const getPersonalRecords = (workouts) =>
+  workouts
+    .flatMap((workout) => workout.sets)
+    .reduce(
+      (records, set) => ({
+        ...records,
+        [set.exercise]: Math.max(
+          records[set.exercise] ?? 0,
+          estimateOneRepMax(set),
+        ),
+      }),
+      {},
+    );
+
+export const getLatestWorkout = (workouts) =>
+  workouts.toSorted((workout1, workout2) =>
+    workout2.date.localeCompare(workout1.date),
+  )[0];
